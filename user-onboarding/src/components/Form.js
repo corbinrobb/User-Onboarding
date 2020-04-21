@@ -88,7 +88,7 @@ const Form = () => {
           value={form.name}
           onChange={handleChange}
         />
-      {(errors.name.length > 0) && <p>{errors.name}</p>}
+      {(errors.name.length > 0) && <p data-cy="name">{errors.name}</p>}
       <label htmlFor="email">
         Email:
       </label>
@@ -98,7 +98,7 @@ const Form = () => {
           value={form.email}
           onChange={handleChange}
         />
-      {(errors.email.length > 0) && <p>{errors.email}</p>}
+      {(errors.email.length > 0) && <p data-cy="email">{errors.email}</p>}
       <label htmlFor="password">
         Password:
       </label>
@@ -108,7 +108,7 @@ const Form = () => {
           value={form.password}
           onChange={handleChange}
         />
-      {(errors.password.length > 0) && <p>{errors.password}</p>}
+      {(errors.password.length > 0) && <p data-cy="password">{errors.password}</p>}
       <label htmlFor="terms">
         <input
           name="terms"
@@ -118,7 +118,7 @@ const Form = () => {
         />
         Terms and conditions
       </label>
-      {(errors.terms.length > 0) && <p>{errors.terms}</p>}
+      {(errors.terms.length > 0) && <p data-cy="terms">{errors.terms}</p>}
       <button disabled={buttonOff}>Submit</button>
       <pre>{users.length !== 0 && users.map(user => {
         return JSON.stringify(user, null, 2)
