@@ -22,6 +22,10 @@ describe('Test the inputs and submit on the form', function() {
       .check()
       .should('be.checked')
 
+    cy.get('select')
+      .select('Web Developer')
+      .should('have.value', 'Web Developer')
+
     cy.get('button')
       .click()
 
@@ -43,7 +47,7 @@ describe('Test the inputs and submit on the form', function() {
       .clear()
 
     cy.get('[data-cy=email]')
-      .should('have.text', 'Enter your email')
+      .should('have.text', 'Please enter your email')
 
     cy.get('input[name="email"]')
       .type('email.com')

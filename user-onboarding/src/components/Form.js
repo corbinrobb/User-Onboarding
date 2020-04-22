@@ -4,8 +4,9 @@ import * as yup from 'yup';
 
 const schema = yup.object().shape({
   name: yup.string().required('Please enter a name'),
-  email: yup.string().email().required('Enter your email'),
+  email: yup.string().email().required('Please enter your email'),
   password: yup.string().min(7, 'Password must be at least 7 characters long').required('Please enter a password'),
+  role: yup.string().required('Please choose a role'),
   terms: yup.boolean().oneOf([true], 'Please accept the terms')
 });
 
@@ -14,7 +15,8 @@ const Form = () => {
     name: '',
     email: '',
     password: '',
-    terms: ''
+    role: '',
+    terms: false
   });
 
   const [ buttonOff, setButtonOff ] = useState(true);
@@ -109,6 +111,19 @@ const Form = () => {
           onChange={handleChange}
         />
       {(errors.password.length > 0) && <p data-cy="password">{errors.password}</p>}
+      <label htmlFor="role">
+        Role:
+      </label>
+      <select
+        name="role"
+        value={form.role}
+        onChange={handleChange}
+      >
+        <option disabled hidden value=''></option>
+        <option value="Web Developer">Web Developer</option>
+        <option value="UX Designer">UX Designer</option>
+        <option value="Data Scientist">Data Scientist</option>
+      </select>
       <label htmlFor="terms">
         <input
           name="terms"
@@ -120,10 +135,9 @@ const Form = () => {
       </label>
       {(errors.terms.length > 0) && <p data-cy="terms">{errors.terms}</p>}
       <button disabled={buttonOff}>Submit</button>
-      <pre>{users.length !== 0 && users.map(user => {
-        return JSON.stringify(user, null, 2)
-      })}
-      </pre>
+      {users.length > 0 && users.map(user => {
+        return <pre>{JSON.stringify(user, null, 2)}</pre> })
+      }
     </form>
   );
 }
